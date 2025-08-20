@@ -1,0 +1,24 @@
+name: Pull Develop Branch
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  pull-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+
+      - name: Create target folder
+        run: mkdir -p pulled_code
+
+      - name: Copy code to folder
+        run: cp -r . pulled_code/
+
+      - name: List contents of folder
+        run: ls -la pulled_code
